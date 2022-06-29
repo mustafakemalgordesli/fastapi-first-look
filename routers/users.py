@@ -10,17 +10,12 @@ from controllers.users import UserController
 router = APIRouter()
 
 
-@router.get("/", tags=["users"])
-async def read_users():
-    return [{"username": "Rick"}, {"username": "Morty"}]
 
 
-
-@router.get("/{id}", tags=["users"])
-async def read_user(id: int):
-    return {"username": id}
-
-
-@router.post("/", response_model=User)
-async def create_user(user: User):
+@router.post("/register")
+async def register(user: User):
     return UserController.create(user)
+
+@router.post("/login")
+async def login(user: User):
+    return "login"

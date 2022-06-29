@@ -7,7 +7,7 @@ app = FastAPI(debug=True)
 
 
 @app.get("/")
-async def read_user_me():
-    return {"username": "fakecurrentuser"}
+async def hello_world():
+    return {"message": "Hello World!"}
 
 app.include_router(users.router, prefix="/users", tags=["users"])
