@@ -11,8 +11,6 @@ from controllers.users import UserController
 router = APIRouter()
 
 
-
-
 @router.post("/register")
 async def register(user: RegisterDto):
     return UserController.create(user)

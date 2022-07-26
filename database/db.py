@@ -2,7 +2,6 @@ from sqlalchemy import ForeignKey, create_engine, Column, Integer, String, Boole
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import datetime
-from sqlalchemy.orm import relationship
 
 
 
@@ -29,7 +28,6 @@ class User(Base):
     #     super(User, self).__init__(**kwargs)
     
     # def __init__(self, email, firstName, lastName, password):
-    #     self.id = 0
     #     self.email = email
     #     self.firstName = firstName
     #     self.lastName = lastName
