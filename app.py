@@ -10,13 +10,14 @@ app = FastAPI(debug=True)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 origins = [
-    "http://localhost",
-    "http://localhost:8080",
+    # "http://localhost",
+    # "http://localhost:8080",
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    # allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
