@@ -10,16 +10,8 @@ class UserController:
     def create(data):
         try:
             session = Session()
-            # createdUser = User(email=data.email, firstName=data.firstName,
-            #                    lastName=data.lastName, password=data.password)
-            #createdUser = User(id=2, email=data.email, firstName=data.firstName, lastName=data.lastName, password=data.password, createdAt=datetime.now(), status=True)
-            createdUser = User()
-            createdUser.email = data.email
-            createdUser.firstName = data.firstName
-            createdUser.lastName = data.lastName
-            createdUser.status = True
-            createdUser.password = data.password
-            createdUser.createdAt = datetime.datetime.now()
+            createdUser = User(email=data.email, firstName=data.firstName,
+                                lastName=data.lastName, password=data.password)
             session.add(createdUser)
             session.commit()
             session.refresh(createdUser)

@@ -2,8 +2,10 @@ from sqlalchemy import ForeignKey, create_engine, Column, Integer, String, Boole
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import datetime
+from os import environ as env
+from dotenv import load_dotenv
 
-
+load_dotenv()
 
 engine = None
 Session = None
@@ -20,20 +22,16 @@ class User(Base):
     updatedAt = Column('updatedAt', DateTime)
     status = Column('status', Boolean, nullable=False)
     
-    
     class Config:
         orm_mode = True
-        
-    # def __init__(self, **kwargs):
-    #     super(User, self).__init__(**kwargs)
     
-    # def __init__(self, email, firstName, lastName, password):
-    #     self.email = email
-    #     self.firstName = firstName
-    #     self.lastName = lastName
-    #     self.password = password
-    #     self.status = True
-    #     self.createdAt = datetime.datetime.now()
+    def __init__(self, email, firstName, lastName, password):
+        self.email = email
+        self.firstName = firstName
+        self.lastName = lastName
+        self.password = password
+        self.status = True
+        self.createdAt = datetime.datetime.now()
     
     
 # class Todo(Base):
@@ -58,7 +56,7 @@ class User(Base):
 #         self.isDeleted = False
 
 try:    
-    engine = create_engine('mysql+pymysql://root:@localhost/testdb', pool_size=10, max_overflow=20)
+    engine = create_engine("mysql+pymysql://" + env["ROOT"] + ":"+ env["PASSWORD"] + "@" + env["HOST"] + "/" + env["DATABASE"], pool_size=10, max_overflow=20)
     Base.metadata.create_all(bind=engine)
     Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 except Exception as e:

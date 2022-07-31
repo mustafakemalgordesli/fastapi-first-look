@@ -160,3 +160,4 @@ cython_debug/
 
 env.bat
 readme.txt
+.env
